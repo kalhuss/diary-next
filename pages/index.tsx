@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+//import title component
+import Header from '../components/Header'
+//import entry component
+import Entry from '../components/Entry'
 
 export default function Home() {
   return (
@@ -11,12 +15,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className='text-indigo-500 text-6xl text-center'>Diary</h1>
-      <div className='flex justify-center'>
-        <div className = "text-2xl text-center">
-          <p>Diary is a place where you can write your thoughts and feelings.</p>
-        </div>
-      </div>
+      <Header />
+      <Entry />
 
     </div>
   )
