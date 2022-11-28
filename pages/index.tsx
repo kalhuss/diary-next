@@ -12,6 +12,11 @@ export default function Home() {
       </Head>
 
       <h1 className='text-indigo-500 text-6xl text-center'>Diary</h1>
+      <div className='flex justify-center'>
+        <div className = "text-2xl text-center">
+          <p>Diary is a place where you can write your thoughts and feelings.</p>
+        </div>
+      </div>
 
     </div>
   )
