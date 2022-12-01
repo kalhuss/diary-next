@@ -5,8 +5,12 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 //import entry component
 import Entry from '../components/Entry'
+import { useRef } from 'react'
 
 export default function Home() {
+
+  const titleRef = useRef<HTMLInputElement>(null);
+
   return (
     <div>
       <Head>
@@ -15,8 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-      <Entry />
+      <Header titleRef = {titleRef}/>
+      <Entry titleRef = {titleRef}/>
 
     </div>
   )
