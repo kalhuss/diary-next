@@ -1,5 +1,6 @@
 import Title from './Title';
 import React, {useRef} from 'react';
+import Link from 'next/link'
 
 interface Props {
     titleRef: React.RefObject<HTMLInputElement>;
@@ -13,7 +14,7 @@ const Header: React.FC<Props> = ({ titleRef }) => {
 
     return (
         <div className = "flex justify-between">
-            <button className = "font-mono">Home</button>
+            <button className="font-mono">Home</button>
             <Title titleRef = {titleRef}/>
             <div className = "font-mono">{date.getDate()} / {date.getMonth()} / {date.getFullYear()}</div>
         </div>
