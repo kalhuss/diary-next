@@ -1,20 +1,17 @@
 //Import useState
 import React, { useState, useRef } from 'react';
-import { FC, SetStateAction, Dispatch } from 'react'
-import { pages } from "@prisma/client"
 import Router from 'next/router'
 
 interface Props {
     titleRef: React.RefObject<HTMLInputElement>;
 }
-//Create a component where the user can enter their diary entry
+
 const Entry: React.FC<Props> = ({ titleRef }) => {
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
     //Call the api to add the entry
     const addEntry = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const [edit, isEdit] = useState(false)
         
         //Get the value from the input field
         const title = titleRef.current?.value;
@@ -24,7 +21,7 @@ const Entry: React.FC<Props> = ({ titleRef }) => {
         if (!title || !content) return;
         //Call the api
         fetch('/api/submitEntry', { method: 'POST', body: JSON.stringify({ title, content }) })
-            //.then(() => Router.push('/'))
+            .then(() => Router.push('/'))
         
     }
 

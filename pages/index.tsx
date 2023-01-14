@@ -1,12 +1,11 @@
-//Default tsx template:
 import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
 import { pages} from '@prisma/client';
 import prisma from "../prisma/prisma"
 import { FC } from 'react';
 import DisplayCard from '../components/DisplayCard';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import Header from '../components/Header';
 
 interface EntryProps {
     entries: pages[];
@@ -18,6 +17,7 @@ const HomePage: FC<EntryProps> = ({ entries }) => {
 
     return (
         <div>
+            <Header/>
             <Link href = "/createEntry">
                 <button className = "font-mono" onClick={() => router.push('/createEntry')}>Create</button>
             </Link>

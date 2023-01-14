@@ -9,11 +9,10 @@ export default async function updateEntry(req: NextApiRequest, res: NextApiRespo
         return res.status(405).json({message: "Method not allowed"})
     }
 
-    //Get the title and content from the request body and the id from the query
+    //Get the id, title and content from the request body and the id from the query
     const {id, titleData, contentData} : {id: number, titleData: string, contentData: string} = JSON.parse(req.body)
-    console.log(id, titleData, contentData)
-    console.log(req.body)
-    //If no title or content is provided, return an error
+
+    //If no id, title or content is provided, return an error
     if(!id || !titleData || !contentData){
         return res.status(400).json({message: "Please provide a title and content"})
     }

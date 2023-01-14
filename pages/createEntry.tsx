@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import Entry from '../components/Entry'
 import { useRef } from 'react'
+import Title from '../components/Title'
 
-export default function Home() {
+const CreateEntry: React.FC = ({}) => {
 
   const titleRef = useRef<HTMLInputElement>(null);
 
@@ -17,9 +16,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header titleRef = {titleRef}/>
+      <Header/>
+      <Title titleRef = { titleRef }/>
       <Entry titleRef = {titleRef}/>
 
     </div>
   )
 }
+
+export default CreateEntry;

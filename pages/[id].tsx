@@ -15,12 +15,12 @@ const EntryPage: NextPage<{ entries: pages}> = ({ entries }) => {
     const updateEntry = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         
-        //Get the value from the input field
+        //Get the values
         const id = entries.id;
         const titleData = title;
         const contentData = content;
-        //console.log(idData, titleData, contentData)
-        //If the title or content is empty, return
+
+        //If the id, title or content is empty, return
         if (!id || !titleData || !contentData) return;
         //Call the api
         fetch('/api/updateEntry', { method: 'POST', body: JSON.stringify({ id, titleData, contentData }) })
