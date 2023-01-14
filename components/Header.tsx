@@ -8,7 +8,7 @@ interface Props {
     titleRef: React.RefObject<HTMLInputElement>;
 }
 
-//Create a header component
+
 const Header: React.FC<Props> = ({ titleRef }) => {
 
     const date = new Date();
@@ -20,8 +20,8 @@ const Header: React.FC<Props> = ({ titleRef }) => {
             <Link href = "/">
                 <button className = "font-mono" onClick={() => router.push('/')}>Home</button>
             </Link>
-            <Title titleRef = {titleRef}/>
-            <div className = "font-mono">{date.getDate()} / {date.getMonth()} / {date.getFullYear()}</div>
+            <Title titleRef = { titleRef }/>
+            <div className = "font-mono">{ date.getDate() } / { date.getMonth() + 1 } / { date.getFullYear() }</div>
         </div>
     )
 }

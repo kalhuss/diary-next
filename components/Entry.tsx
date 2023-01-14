@@ -14,6 +14,7 @@ const Entry: React.FC<Props> = ({ titleRef }) => {
     //Call the api to add the entry
     const addEntry = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        const [edit, isEdit] = useState(false)
         
         //Get the value from the input field
         const title = titleRef.current?.value;

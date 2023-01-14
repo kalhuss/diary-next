@@ -18,6 +18,8 @@ const DisplayCard: FC<EntryProps> = ({ entries }) => {
                     <div className="bg-white p-6 rounded-lg shadow-lg w-auto mb-6 cursor-pointer">
                         <h1 className="text-2xl font-medium">{entry.title}</h1>
                         <p className="text-gray-600">{entry.createdAt.toString().substring(0, entry.createdAt.toString().indexOf('T'))}</p>
+                        {entry.createdAt !== entry.updatedAt && <p className="text-gray-600">Last updated: {entry.updatedAt.toString().substring(0, entry.updatedAt.toString().indexOf('T'))}</p>
+}
                     </div>
                 </Link>
             ))}

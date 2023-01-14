@@ -3,15 +3,49 @@ import { GetServerSideProps, NextPage } from 'next';
 import { pages} from '@prisma/client';
 import prisma from "../prisma/prisma"
 import { useRouter } from 'next/router'
+import { useState } from 'react';
 
 const EntryPage: NextPage<{ entries: pages}> = ({ entries }) => {
     const router = useRouter()
 
+    const [edit, isEdit] = useState(false)
+    const [title, setTitle] = useState(entries.title);
+    const [content, setContent] = useState(entries.content);
+
+    const updateEntry = async (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        
+        //Get the value from the input field
+        const id = entries.id;
+        const titleData = title;
+        const contentData = content;
+        //console.log(idData, titleData, contentData)
+        //If the title or content is empty, return
+        if (!id || !titleData || !contentData) return;
+        //Call the api
+        fetch('/api/updateEntry', { method: 'POST', body: JSON.stringify({ id, titleData, contentData }) })
+            .then(() => router.push('/'))
+        
+    }
+
     return (
         <div>
-            <h1>{entries.title}</h1>
-            <p>{entries.content}</p>
+            {edit ?(
+                <div className = "flex flex-col">
+                    <input value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    <textarea value={content} onChange={(e) => setContent(e.target.value)}/>
+                    <button className = "font-mono" onClick={() => isEdit(!edit)}>Cancel</button>
+                    <button className = "font-mono" onClick={updateEntry}>Update</button>
+                </div>
+            ) : (
+                <div className = "flex flex-col">
+                    <h1>{title}</h1>
+                    <p>{content}</p>
+                    <button className="font-mono" onClick={() => isEdit(!edit)}>Edit</button>
+                </div>
+            )}
             <button className="font-mono" onClick={() => router.push('/')}>Go Back</button>
+            
         </div>
     )
 }
