@@ -10,11 +10,17 @@ const Header: React.FC = ({}) => {
     const router = useRouter()
     
     return (
-        <div className = "flex justify-between">
+        <div className = "flex justify-between font-mono p-5 text-xl">
+            <div className='flex gap-10'>
             <Link href = "/">
-                <button className = "font-mono" onClick={() => router.push('/')}>Home</button>
+                <button className = 'transition ease-in-out hover:scale-110 duration-300' onClick={() => router.push('/')}>Home</button>
             </Link>
-            <div className = "font-mono">{ date.getDate() } / { date.getMonth() + 1 } / { date.getFullYear() }</div>
+            <Link href = "/createEntry">
+                <button className = 'transition ease-in-out hover:scale-110 duration-300' onClick={() => router.push('/createEntry')}>Create</button>
+            </Link>
+            </div>
+            <div className='text-xl'> Your Diary </div>
+            <div>{ date.getDate() } / { date.getMonth() + 1 } / { date.getFullYear() }</div>
         </div>
     )
 }

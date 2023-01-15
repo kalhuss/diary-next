@@ -13,10 +13,16 @@ interface EntryProps {
 
 const DisplayCard: FC<EntryProps> = ({ entries }) => {
 
+    const deleteEntry = async () => {
+        const id = entries[0].id;
+        fetch('/api/deleteEntry', { method: 'POST', body: JSON.stringify({ id }) })
+            .then(() => router.push('/'))
+    }
+
     return (
-        <div className = "grid grid-cols-4 gap-6">
+        <div className = "grid grid-cols-4 gap-6 font-mono">
             {entries.map((entry) => (
-                <div className="bg-white p-6 rounded-lg shadow-lg w-auto mb-6 cursor-default flex group">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-auto mb-6 cursor-default flex group hover:drop-shadow-md">
                     <div className = "flex-col">
                         <h1 className="text-2xl font-medium">{entry.title}</h1>
                         <p className="text-gray-600">{entry.createdAt.toString().substring(0, entry.createdAt.toString().indexOf('T'))}</p>
@@ -24,9 +30,9 @@ const DisplayCard: FC<EntryProps> = ({ entries }) => {
                     </div>
                     <div className = "flex ml-auto gap-4">
                         <Link key={entry.id} href={`/${entry.id}`}>
-                            <img src = "/editIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"/>
+                            <img src = "/editIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:scale-110 duration-300"/>
                         </Link>
-                        <img src = "/deleteIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"/>
+                        <img onClick = {deleteEntry} src = "/deleteIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:scale-110 duration-300"/>
                     </div>
                 </div>
             ))}

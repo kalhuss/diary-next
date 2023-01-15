@@ -18,10 +18,7 @@ const HomePage: FC<EntryProps> = ({ entries }) => {
     return (
         <div>
             <Header/>
-            <Link href = "/createEntry">
-                <button className = "font-mono" onClick={() => router.push('/createEntry')}>Create</button>
-            </Link>
-            <div className = "">
+            <div className = "p-5">
                 <DisplayCard entries={entries}/>
             </div>
         </div>

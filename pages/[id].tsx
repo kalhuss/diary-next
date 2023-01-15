@@ -30,20 +30,20 @@ const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
     }
 
     return (
-        <div>
+        <div className='font-mono'>
             <Header/>
             {edit ?(
                 <div className = "flex flex-col">
                     <input value={title} onChange={(e) => setTitle(e.target.value)}/>
                     <textarea value={content} onChange={(e) => setContent(e.target.value)}/>
-                    <button className = "font-mono" onClick={() => isEdit(!edit)}>Cancel</button>
-                    <button className = "font-mono" onClick={updateEntry}>Update</button>
+                    <button className = "" onClick={() => isEdit(!edit)}>Cancel</button>
+                    <button className = "" onClick={updateEntry}>Update</button>
                 </div>
             ) : (
                 <div className = "flex flex-col">
                     <h1>{title}</h1>
                     <p>{content}</p>
-                    <button className="font-mono" onClick={() => isEdit(!edit)}>Edit</button>
+                    <button className= "" onClick={() => isEdit(!edit)}>Edit</button>
                 </div>
             )}
             
