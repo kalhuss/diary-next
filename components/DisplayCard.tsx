@@ -14,19 +14,19 @@ interface EntryProps {
 const DisplayCard: FC<EntryProps> = ({ entries }) => {
 
     return (
-        <div>
+        <div className = "grid grid-cols-4 gap-6">
             {entries.map((entry) => (
-                <div className="bg-white p-6 rounded-lg shadow-lg w-auto mb-6 cursor-default flex">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-auto mb-6 cursor-default flex group">
                     <div className = "flex-col">
                         <h1 className="text-2xl font-medium">{entry.title}</h1>
                         <p className="text-gray-600">{entry.createdAt.toString().substring(0, entry.createdAt.toString().indexOf('T'))}</p>
                         {entry.createdAt !== entry.updatedAt && <p className="text-gray-600">Last updated: {entry.updatedAt.toString().substring(0, entry.updatedAt.toString().indexOf('T'))}</p>}
                     </div>
-                    <div className = "flex ml-auto gap-4 ">
+                    <div className = "flex ml-auto gap-4">
                         <Link key={entry.id} href={`/${entry.id}`}>
-                            <button className="bg-blue-500 text-white p-2 rounded-lg shadow-lg w-auto mt-6 ml-auto my-auto">Edit</button>
+                            <img src = "/editIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"/>
                         </Link>
-                        <button className="bg-red-500 text-white p-2 rounded-lg shadow-lg w-auto mt-6 ml-auto my-auto">Delete</button>
+                        <img src = "/deleteIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"/>
                     </div>
                 </div>
             ))}
