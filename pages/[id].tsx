@@ -4,8 +4,9 @@ import { pages} from '@prisma/client';
 import prisma from "../prisma/prisma"
 import { useRouter } from 'next/router'
 import { useState } from 'react';
+import Header from '../components/Header';
 
-const EntryPage: NextPage<{ entries: pages}> = ({ entries }) => {
+const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
     const router = useRouter()
 
     const [edit, isEdit] = useState(false)
@@ -30,6 +31,7 @@ const EntryPage: NextPage<{ entries: pages}> = ({ entries }) => {
 
     return (
         <div>
+            <Header/>
             {edit ?(
                 <div className = "flex flex-col">
                     <input value={title} onChange={(e) => setTitle(e.target.value)}/>
@@ -44,7 +46,6 @@ const EntryPage: NextPage<{ entries: pages}> = ({ entries }) => {
                     <button className="font-mono" onClick={() => isEdit(!edit)}>Edit</button>
                 </div>
             )}
-            <button className="font-mono" onClick={() => router.push('/')}>Go Back</button>
             
         </div>
     )
