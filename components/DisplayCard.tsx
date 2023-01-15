@@ -15,6 +15,7 @@ const DisplayCard: FC<EntryProps> = ({ entries }) => {
 
     const deleteEntry = async () => {
         const id = entries[0].id;
+        console.log(entries);
         fetch('/api/deleteEntry', { method: 'POST', body: JSON.stringify({ id }) })
             .then(() => router.push('/'))
     }

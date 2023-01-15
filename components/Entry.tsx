@@ -27,9 +27,9 @@ const Entry: React.FC<Props> = ({ titleRef }) => {
 
     return (
         <div>
-            <form>
-                <textarea ref={inputRef} placeholder="Start typing your entry..." className="font-mono w-full h-96"></textarea>
-                <button type="submit" className="font-mono" onClick={addEntry} >Submit</button>
+            <form className='flex flex-col items-center'>
+                <textarea ref={inputRef} placeholder="Start typing your entry..." className="font-mono w-full h-96 p-5 text-lg"></textarea>
+                <button type="submit" className="font-mono mt-5 rounded p-1 text-lg bg-slate-100 w-min hover:bg-slate-300" onClick={addEntry} >Submit</button>
             </form>
         </div>
     )

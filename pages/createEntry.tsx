@@ -17,11 +17,11 @@ const CreateEntry: React.FC = ({}) => {
       </Head>
 
       <Header/>
-      <div className = 'flex flex-col items-center w-full'>
-        <div className = 'text-3xl font-mono p-5 w-full'>
+      <div className = 'flex flex-col items-center w-full font-mono'>
+        <div className = 'text-3xl p-5 w-full'>
           <Title titleRef = { titleRef }/>
         </div>
-        <div className='w-full mt-5'>
+        <div className='w-3/4 mt-5'>
           <Entry titleRef = {titleRef}/>
         </div>
       </div>
