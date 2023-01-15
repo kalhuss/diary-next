@@ -5,6 +5,7 @@ import prisma from "../prisma/prisma"
 import { useRouter } from 'next/router'
 import { useState } from 'react';
 import Header from '../components/Header';
+import Title from '../components/Title';
 
 const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
     const router = useRouter()
@@ -42,6 +43,7 @@ const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
             ) : (
                 <div className = "flex flex-col">
                     <h1>{title}</h1>
+                    {/* <Title titleRef={title}/> */}
                     <p>{content}</p>
                     <button className= "" onClick={() => isEdit(!edit)}>Edit</button>
                 </div>

@@ -13,8 +13,6 @@ interface EntryProps {
 
 const HomePage: FC<EntryProps> = ({ entries }) => {
 
-    const router = useRouter()
-
     return (
         <div>
             <Header/>

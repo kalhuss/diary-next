@@ -13,9 +13,7 @@ interface EntryProps {
 
 const DisplayCard: FC<EntryProps> = ({ entries }) => {
 
-    const deleteEntry = async () => {
-        const id = entries[0].id;
-        console.log(entries);
+    const deleteEntry = async (id: number) => {
         fetch('/api/deleteEntry', { method: 'POST', body: JSON.stringify({ id }) })
             .then(() => router.push('/'))
     }
@@ -33,7 +31,7 @@ const DisplayCard: FC<EntryProps> = ({ entries }) => {
                         <Link key={entry.id} href={`/${entry.id}`}>
                             <img src = "/editIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:scale-110 duration-300"/>
                         </Link>
-                        <img onClick = {deleteEntry} src = "/deleteIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:scale-110 duration-300"/>
+                        <img onClick = {e => deleteEntry(entry.id)} src = "/deleteIcon.svg" className="w-6 h-6 mt-6 ml-auto my-auto hidden group-hover:block transition ease-in-out hover:scale-110 duration-300"/>
                     </div>
                 </div>
             ))}

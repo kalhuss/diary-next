@@ -11,7 +11,6 @@ export default async function deleteEntry(req: NextApiRequest, res: NextApiRespo
 
     //Get the id from the request
     const { id } : { id: number} = JSON.parse(req.body)
-    console.log(id)
 
     //Delete the entry
     const deletedEntry = await prisma.pages.delete({
