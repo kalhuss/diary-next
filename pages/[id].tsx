@@ -2,52 +2,40 @@ import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { pages} from '@prisma/client';
 import prisma from "../prisma/prisma"
-import { useRouter } from 'next/router'
-import { useState } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Title from '../components/Title';
+import Entry from '../components/Entry';
 
 const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
-    const router = useRouter()
 
-    const [edit, isEdit] = useState(false)
-    const [title, setTitle] = useState(entries.title);
-    const [content, setContent] = useState(entries.content);
+    const titleRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLTextAreaElement>(null);
 
-    const updateEntry = async (e: React.FormEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        
-        //Get the values
-        const id = entries.id;
-        const titleData = title;
-        const contentData = content;
+    useEffect(() => {
+        if (titleRef.current) {
+            titleRef.current.value = entries.title;
+        }
+    }, [titleRef.current?.value]);
 
-        //If the id, title or content is empty, return
-        if (!id || !titleData || !contentData) return;
-        //Call the api
-        fetch('/api/updateEntry', { method: 'POST', body: JSON.stringify({ id, titleData, contentData }) })
-            .then(() => router.push('/'))
-        
-    }
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.value = entries.content;
+        }
+    }, [inputRef.current?.value]);
 
     return (
         <div className='font-mono'>
             <Header/>
-            {edit ?(
-                <div className = "flex flex-col">
-                    <input value={title} onChange={(e) => setTitle(e.target.value)}/>
-                    <textarea value={content} onChange={(e) => setContent(e.target.value)}/>
-                    <button className = "" onClick={() => isEdit(!edit)}>Cancel</button>
-                    <button className = "" onClick={updateEntry}>Update</button>
+            <div className = "flex flex-col items-center w-full font-mono">
+                <div className = 'text-3xl p-5 w-full'>
+                    <Title titleRef = { titleRef }/>
                 </div>
-            ) : (
-                <div className = "flex flex-col">
-                    <h1>{title}</h1>
-                    {/* <Title titleRef={title}/> */}
-                    <p>{content}</p>
-                    <button className= "" onClick={() => isEdit(!edit)}>Edit</button>
+                <div className='w-3/4 mt-5'>
+                    <Entry titleRef = {titleRef} inputRef = {inputRef} id = {entries.id}/>
                 </div>
-            )}
+            </div>
             
         </div>
     )
@@ -56,7 +44,6 @@ const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
 export const getServerSideProps: GetServerSideProps<{}> = async (context) =>{
     
     const id = context.params?.id
-
     const entries = await prisma.pages.findFirst({
         where: {
             id: parseInt(id as string)

@@ -1,5 +1,3 @@
-//Create an updateEntry function that takes in an id and updates the values within the database
-
 import { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../prisma/prisma'
 
@@ -10,11 +8,11 @@ export default async function updateEntry(req: NextApiRequest, res: NextApiRespo
     }
 
     //Get the id, title and content from the request body and the id from the query
-    const {id, titleData, contentData} : {id: number, titleData: string, contentData: string} = JSON.parse(req.body)
+    const {id, title, content} : {id: number, title: string, content: string} = JSON.parse(req.body)
 
     //If no id, title or content is provided, return an error
-    if(!id || !titleData || !contentData){
-        return res.status(400).json({message: "Please provide a title and content"})
+    if(!id || !title || !content){
+        return res.status(400).json({message: "Please provide a id, title and content"})
     }
 
     //Update the entry in the database
@@ -23,8 +21,8 @@ export default async function updateEntry(req: NextApiRequest, res: NextApiRespo
             id: id
         },
         data: {
-            title: titleData,
-            content: contentData
+            title: title,
+            content: content
         },
     }).catch((err) => {
         console.log(err)

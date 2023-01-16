@@ -1,17 +1,15 @@
 import React from 'react';
 import { pages} from '@prisma/client';
 import prisma from "../prisma/prisma"
-import { FC } from 'react';
+import { NextPage } from 'next';
 import DisplayCard from '../components/DisplayCard';
-import { useRouter } from 'next/router'
-import Link from 'next/link';
 import Header from '../components/Header';
 
 interface EntryProps {
     entries: pages[];
 }
 
-const HomePage: FC<EntryProps> = ({ entries }) => {
+const HomePage: NextPage<EntryProps> = ({ entries }) => {
 
     return (
         <div>
@@ -31,6 +29,5 @@ export async function getServerSideProps(){
         }
     }
 }
-
 
 export default HomePage;

@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { redirect } from "next/dist/server/api-utils"
 import prisma from "../../prisma/prisma"
 
 // Get by id

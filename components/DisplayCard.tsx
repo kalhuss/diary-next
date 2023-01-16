@@ -1,8 +1,6 @@
 import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { pages} from '@prisma/client';
-import { FC } from 'react';
-import prisma from '../prisma/prisma';
 import Link from 'next/link';
 import router from 'next/router';
 
@@ -10,8 +8,7 @@ interface EntryProps {
     entries: pages[];
 }
 
-
-const DisplayCard: FC<EntryProps> = ({ entries }) => {
+const DisplayCard: NextPage<EntryProps> = ({ entries }) => {
 
     const deleteEntry = async (id: number) => {
         fetch('/api/deleteEntry', { method: 'POST', body: JSON.stringify({ id }) })

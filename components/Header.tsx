@@ -1,7 +1,5 @@
-import Title from './Title';
-import React, {useRef} from 'react';
+import React from 'react';
 import Link from 'next/link'
-import HomePage from '../pages'
 import { useRouter } from 'next/router'
 
 const Header: React.FC = ({}) => {
