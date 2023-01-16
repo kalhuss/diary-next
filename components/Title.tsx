@@ -15,7 +15,7 @@ const Title: React.FC<Props> = ({ titleRef }) => {
       setCharCount(titleRef.current.value.length);
       
     }
-  }, [titleRef.current?.value.length])
+  }, [titleRef.current?.value.length, titleRef])
 
   const handleInput = () => {
     if(titleRef.current){

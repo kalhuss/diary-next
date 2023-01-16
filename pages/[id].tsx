@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Header from '../components/Header';
 import Title from '../components/Title';
 import Entry from '../components/Entry';
+import { EntityNameExpression } from 'typescript';
 
 const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
 
@@ -17,13 +18,13 @@ const EntryPage: NextPage<{ entries: pages,}> = ({ entries }) => {
         if (titleRef.current) {
             titleRef.current.value = entries.title;
         }
-    }, [titleRef.current?.value]);
+    }, [titleRef.current?.value, entries.title]);
 
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.value = entries.content;
         }
-    }, [inputRef.current?.value]);
+    }, [inputRef.current?.value, entries.content]);
 
     return (
         <div className='font-mono'>
