@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Header from '../components/Header'
 import Entry from '../components/Entry'
 import { useRef } from 'react'
@@ -11,12 +10,6 @@ const CreateEntry: React.FC = ({}) => {
 
   return (
     <div>
-      <Head>
-        <title>Diary</title>
-        <meta name="description" content="Diary app" />
-        <link rel="icon" href="/favicon.ico"/>
-      </Head>
-
       <Header/>
       <div className = 'flex flex-col items-center w-full font-mono'>
         <div className = 'text-3xl p-5 w-full'>
